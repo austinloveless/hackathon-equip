@@ -1,24 +1,42 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import MapComponent from './components/MapComponent';
+import { 
+  Menu, 
+  Button, 
+  MenuItem,
+  Typography
+} from '@material-ui/core';
 
 function App() {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = event => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      
+      <div>
+        <Typography variant="h6" style={{ backgroundColor: "#50c7c7"}} color="primary" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+          Equip
+       </Typography>
+        <Menu
+          id="simple-menu"
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+          color="primary"
         >
-          Learn React
-        </a>
-      </header>
+        </Menu>
+      </div>
+        <MapComponent/>
+        
     </div>
   );
 }
